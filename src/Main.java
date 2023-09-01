@@ -69,8 +69,6 @@ public class Main {
         LibraryService libraryService = new LibraryService(database);
         BookService bookService = new BookService(database);
         ReaderService readerService = new ReaderService(database);
-
-
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -78,36 +76,91 @@ public class Main {
             System.out.println("1 - Сохранить библиотеку");
             System.out.println("2 - Получить все библиотеки");
             System.out.println("3 - Получить библиотеку по ID");
-            // Добавьте остальные варианты кейсов
+            System.out.println("4 - Обновить библиотеку по ID");
+            System.out.println("5 - Удалить библиотеку по ID");
+            System.out.println("6 - Сохранить книгу");
+            System.out.println("7 - Получить все книги в библиотеке");
+            System.out.println("8 - Получить книгу по ID в библиотеке");
+            System.out.println("9 - Удалить книгу по ID в библиотеке");
+            System.out.println("10 - Удалить все книги в библиотеке по ID библиотеки");
+            System.out.println("11 - Сохранить читателя");
+            System.out.println("12 - Получить всех читателей");
+            System.out.println("13 - Получить читателя по ID");
+            System.out.println("14 - Обновить читателя по ID");
+            System.out.println("15 - Назначить читателя в библиотеку");
+            System.out.println("0 - Выйти");
 
             int choice = scanner.nextInt();
 
             switch (choice) {
                 case 1:
                     // Метод для сохранения библиотеки
-                    List<Library> savedLibraries = libraryService.saveLibrary(arrayLibraries);
+                    System.out.println(libraryService.saveLibrary(arrayLibraries));
                     break;
                 case 2:
                     // Метод для получения всех библиотек
-                    List<Library> allLibraries = libraryService.getAllLibraries();
+                    libraryService.getAllLibraries();
                     break;
                 case 3:
                     // Метод для получения библиотеки по ID
-                    Library libraryById = libraryService.getLibraryById(1L);
+                    System.out.println(libraryService.getLibraryById(1L));
                     break;
-                // Добавьте остальные кейсы здесь
+                case 4:
+                    // Метод для обновления библиотеки по ID
+                    System.out.println(libraryService.updateLibrary(2L, library3));
+                    break;
+                case 5:
+                    // Метод для удаления библиотеки по ID
+                    libraryService.deleteLibrary(2L);
+                    break;
+                case 6:
+                    // Метод для сохранения книги
+                    System.out.println(bookService.saveBook(1L, book1));
+                    break;
+                case 7:
+                    // Метод для получения всех книг в библиотеке
+                    bookService.getAllBooks(1L);
+                    break;
+                case 8:
+                    // Метод для получения книги по ID в библиотеке
+                    System.out.println(bookService.getBookById(1L, 1L));
+                    break;
+                case 9:
+                    // Метод для удаления книги по ID в библиотеке
+                    bookService.deleteBook(1L, 1L);
+                    break;
+                case 10:
+                    // Метод для удаления всех книг в библиотеке по ID библиотеки
+                    bookService.clearBooksByLibraryId(1L);
+                    break;
+                case 11:
+                    // Метод для сохранения читателя
+                    readerService.saveReader(reader);
+                    break;
+                case 12:
+                    // Метод для получения всех читателей
+                    readerService.getAllReaders();
+                    break;
+                case 13:
+                    // Метод для получения читателя по ID
+                    readerService.getReaderById(1L);
+                    break;
+                case 14:
+                    // Метод для обновления читателя по ID
+                    readerService.updateReader(1L, reader);
+                    break;
+                case 15:
+                    // Метод для назначения читателя в библиотеку
+                    readerService.assignReaderToLibrary(1L, 1L);
+                    break;
+                case 0:
+                    System.out.println("Завершение программы.");
+                    scanner.close();
+                    return;
                 default:
                     System.out.println("Неверный номер кейса");
                     break;
             }
-
-            System.out.println("Продолжить? (1 - Да, 0 - Нет)");
-            int continueChoice = scanner.nextInt();
-            if (continueChoice == 0) {
-                break;
-            }
         }
-
-        scanner.close();
     }
 }

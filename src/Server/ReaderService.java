@@ -54,8 +54,7 @@ public class ReaderService implements readerServer {
                     return reader;
                 }
             }
-
-
+        System.out.println(reader);
         throw new IllegalAccessException("Читаталеь с ID"+id+" не найден ");
     }
     @Override

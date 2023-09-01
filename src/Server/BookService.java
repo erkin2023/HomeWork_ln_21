@@ -98,6 +98,7 @@ public class BookService implements bookServer {
                 }
             }
         }
+        System.out.println(libraries1);
 
         return null;
     }
